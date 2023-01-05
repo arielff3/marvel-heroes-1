@@ -16,7 +16,11 @@ export const HeroItem = styled.div`
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #c9c9c9;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+  :hover {
+    cursor: pointer;
+    border: 1px solid #696969;
+  }
 `
 
 export const HeroDescriptionContainer = styled.div`

@@ -2,14 +2,29 @@ import React from 'react'
 import { Character } from '../../contexts/HeroContext'
 import { HeroEvents, HeroDescriptionContainer, HeroItem, HeroSeries, Wrapper } from './style'
 
+import { useNavigate } from 'react-router-dom'
+
 interface CharacterProps {
   character: Character
 }
 
 const CharacterRow: React.FC<CharacterProps> = ({ character }) => {
+  const navigate = useNavigate()
+
+  const goToDetails = () => {
+    navigate(`/details/${character.id}`, {
+      state: {
+        characterId: character.id,
+        characterThumbnail: character.thumbnail,
+        characterName: character.name,
+        characterDescription: character.description,
+      },
+    })
+  }
+
   return (
     <Wrapper>
-      <HeroItem>
+      <HeroItem onClick={goToDetails}>
         <HeroDescriptionContainer>
           <img
             src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
@@ -26,7 +41,7 @@ const CharacterRow: React.FC<CharacterProps> = ({ character }) => {
               .filter((_, index) => index < 3)
               .map((serie) => (
                 <>
-                  <small key={`serie_${JSON.stringify(serie)}`}>{serie.name}</small>
+                  <small key={`series-${JSON.stringify(serie)}`}>{serie.name}</small>
                   <br />
                 </>
               ))
@@ -41,7 +56,7 @@ const CharacterRow: React.FC<CharacterProps> = ({ character }) => {
               .filter((_, index) => index < 3)
               .map((event) => (
                 <>
-                  <small key={`event_${JSON.stringify(event)}`}>{event.name}</small>
+                  <small key={`events-${JSON.stringify(event)}`}>{event.name}</small>
                   <br />
                 </>
               ))

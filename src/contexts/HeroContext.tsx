@@ -45,8 +45,10 @@ interface ServicePayload {
 interface HeroContextProps {
   onSearch(textSearch: string): void
   onPaginate(page: number): void
+  getDetails(characterId: number): void
   attributionText: string
   characters: Character[]
+  characterDetails: any
   pageInfo: { page: string; total: string }
   loading: boolean
 }
@@ -62,12 +64,19 @@ export const HeroProvider: React.FC<Props> = ({ children }) => {
   const textSearch = React.useRef<string>('')
   const [loading, setLoading] = React.useState(false)
   const [values, setValues] = React.useState<ServicePayload>({} as ServicePayload)
+  const [details, setDetails] = React.useState<ServicePayload>({} as ServicePayload)
 
   const characters = React.useMemo(() => {
     if (!values.data) return []
     const { data } = values
     return data.results
   }, [values])
+
+  const characterDetails = React.useMemo(() => {
+    if (!details.data) return undefined
+    const { data } = details
+    return data.results
+  }, [details])
 
   const getList = React.useCallback(
     (page = 0, searchValue = '') => {
@@ -94,6 +103,31 @@ export const HeroProvider: React.FC<Props> = ({ children }) => {
         .finally(() => setLoading(false))
     },
     [setValues],
+  )
+
+  const getDetails = React.useCallback(
+    (characterId: number) => {
+      setLoading(true)
+
+      const PRIVATE_KEY = process.env.REACT_APP_PRIVATE_KEY || ''
+      const PUBLIC_KEY = process.env.REACT_APP_PUBLIC_KEY || ''
+      const ts = new Date().getTime()
+      const hash = MD5(ts + PRIVATE_KEY + PUBLIC_KEY).toString()
+
+      API.get<ServicePayload>(`/characters/${characterId}/events`, {
+        params: {
+          apikey: PUBLIC_KEY,
+          ts,
+          hash,
+          limit: 10,
+        },
+      })
+        .then((response) => {
+          setDetails(response.data)
+        })
+        .finally(() => setLoading(false))
+    },
+    [setDetails],
   )
 
   const onSearch = React.useCallback(
@@ -125,9 +159,11 @@ export const HeroProvider: React.FC<Props> = ({ children }) => {
       value={{
         onSearch,
         onPaginate,
+        getDetails,
         pageInfo,
         attributionText,
         characters,
+        characterDetails,
         loading,
       }}
     >

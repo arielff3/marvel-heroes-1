@@ -41,7 +41,7 @@ export function Home() {
           </HeroHeader>
 
           {characters.map((character) => (
-            <CharacterRow key={`character-${character.id}`} character={character} />
+            <CharacterRow key={character.id} character={character} />
           ))}
         </Container>
         <Footer />
