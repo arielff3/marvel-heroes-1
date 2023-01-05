@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #f7f7f7;
+  background: #f7f7f7 0% 0% no-repeat padding-box;
 `
 
 export const HeroHeaderTitle = styled.div`
@@ -23,19 +23,6 @@ export const HeroHeader = styled.div`
   justify-content: space-between;
   padding: 0 24px;
   margin-top: 32px;
-`
-
-export const HeroItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 16px;
-  padding: 1rem;
-  background-color: #fff;
-
-  border: 1px solid #c9c9c9;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border-radius: 5px;
 `
 
 export const Title = styled.div`
