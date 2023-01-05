@@ -1,21 +1,22 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 16px;
-  padding: 0 16px;
-  background: #ffffff 0% 0% no-repeat padding-box;
-  height: 76px;
-  border: 1px solid #c9c9c9;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 8px;
-  border-radius: 5px;
+  height: 100%;
+  overflow: auto;
+  flex: 1;
 `
 
 export const HeroItem = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  min-height: 76px;
+  padding: 0 16px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 `
 
 export const HeroDescriptionContainer = styled.div`
@@ -23,7 +24,7 @@ export const HeroDescriptionContainer = styled.div`
   display: inline-flex;
   align-items: center;
 
-  width: 33.333%;
+  width: 20%;
 
   img {
     border-radius: 4px;
@@ -39,6 +40,12 @@ export const HeroDescriptionContainer = styled.div`
   }
 `
 
-export const HeroSeries = styled.div``
+export const HeroSeries = styled.div`
+  width: 20%;
+  color: #565656;
+`
 
-export const HeroEvents = styled.div``
+export const HeroEvents = styled.div`
+  width: 20%;
+  color: #565656;
+`

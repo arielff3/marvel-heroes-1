@@ -21,23 +21,30 @@ const CharacterRow: React.FC<CharacterProps> = ({ character }) => {
         </HeroDescriptionContainer>
 
         <HeroSeries>
-          <span>
-            {character.series.items
+          {character.series.items.length > 0 ? (
+            character.series.items
               .filter((_, index) => index < 3)
               .map((serie) => (
                 <>
                   <small key={`serie_${JSON.stringify(serie)}`}>{serie.name}</small>
                   <br />
                 </>
-              ))}
-          </span>
+              ))
+          ) : (
+            <small>Nenhuma série encontrada</small>
+          )}
         </HeroSeries>
 
         <HeroEvents>
           {character.events.items.length > 0 ? (
             character.events.items
               .filter((_, index) => index < 3)
-              .map((event) => <small key={`event_${JSON.stringify(event)}`}>{event.name}</small>)
+              .map((event) => (
+                <>
+                  <small key={`event_${JSON.stringify(event)}`}>{event.name}</small>
+                  <br />
+                </>
+              ))
           ) : (
             <small>Nenhum evento encontrado</small>
           )}

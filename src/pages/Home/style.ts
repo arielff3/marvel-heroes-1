@@ -1,9 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
   margin: 0 2rem;
 `
 
@@ -16,6 +13,8 @@ export const Wrapper = styled.div`
 
 export const HeroHeaderTitle = styled.div`
   font-size: 20px;
+  width: 20%;
+  height: 25%;
 `
 
 export const HeroHeader = styled.div`
