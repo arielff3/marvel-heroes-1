@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, UserCredentials, Wrapper } from './style'
+import { Avatar, Container, Identification, UserCredentials, Wrapper } from './style'
 import { ReactComponent as BusinessLogo } from '../../assets/logo.svg'
 
 export function Navbar() {
@@ -7,7 +7,15 @@ export function Navbar() {
     <Wrapper>
       <Container>
         <BusinessLogo />
-        <UserCredentials>Credentials</UserCredentials>
+        <UserCredentials>
+          <Identification>
+            <span>Usuário Teste</span>
+            <small>Teste de Front-end</small>
+          </Identification>
+          <Avatar>
+            <span>UT</span>
+          </Avatar>
+        </UserCredentials>
       </Container>
     </Wrapper>
   )

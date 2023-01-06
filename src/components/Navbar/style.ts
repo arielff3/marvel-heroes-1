@@ -7,8 +7,45 @@ export const Container = styled.div`
   box-sizing: content-box;
 `
 
-export const UserCredentials = styled.nav`
+export const UserCredentials = styled.div`
   display: flex;
+  margin-left: 50px;
+  align-items: center;
+`
+
+export const Avatar = styled.span`
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #6dc6f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    margin-top: 4px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #fff;
+  }
+`
+
+export const Identification = styled.div`
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  span {
+    font-weight: bold;
+  }
+
+  small {
+    display: inline;
+  }
 `
 
 export const LogoContainer = styled.div`
