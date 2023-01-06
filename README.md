@@ -10,7 +10,8 @@
 </p>
 
 <p align="center">
-  <img src="[![Netlify Status](https://api.netlify.com/api/v1/badges/1d2c12e1-fe83-403a-abab-189f79e6eeb8/deploy-status)](https://app.netlify.com/sites/regal-moonbeam-fc06cc/deploys)" alt="Netlify deploy status shield" />
+  <img src="https://api.netlify.com/api/v1/badges/1d2c12e1-fe83-403a-abab-189f79e6eeb8/deploy-status" alt="netlify deploy last status" />
+
 </p>
 
 <br/>
