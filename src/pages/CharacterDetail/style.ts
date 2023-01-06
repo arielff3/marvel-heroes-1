@@ -39,4 +39,10 @@ export const DescriptionContainer = styled.div`
 
 export const EventsContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`
+
+export const EventTitle = styled.h4`
+  padding: 0 1rem;
 `

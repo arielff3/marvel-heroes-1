@@ -1,9 +1,15 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import { EventCard } from '../../components/EventCard'
+import EventCard from '../../components/EventCard'
 import { Navbar } from '../../components/Navbar'
 import { useSearch } from '../../contexts/HeroContext'
-import { DescriptionContainer, EventsContainer, ThumbnailContainer, Wrapper } from './style'
+import {
+  DescriptionContainer,
+  EventsContainer,
+  EventTitle,
+  ThumbnailContainer,
+  Wrapper,
+} from './style'
 
 export function CharacterDetail() {
   const { characterDetails, getDetails } = useSearch()
@@ -34,11 +40,11 @@ export function CharacterDetail() {
         </DescriptionContainer>
       </Wrapper>
 
-      <h4>Eventos</h4>
+      <EventTitle>Eventos</EventTitle>
 
       <EventsContainer>
-        {characterDetails?.map((item) => (
-          <EventCard key={item.id} />
+        {characterDetails?.map((event) => (
+          <EventCard key={event.id} event={event} />
         ))}
       </EventsContainer>
     </>

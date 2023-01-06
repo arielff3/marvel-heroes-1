@@ -33,7 +33,7 @@ interface Url {
   url: string
 }
 
-interface ServicePayload {
+interface CharacterServicePayload {
   data: {
     results: Character[]
     offset: string
@@ -42,13 +42,29 @@ interface ServicePayload {
   attributionText: string
 }
 
+interface CharacterEventServicePayload {
+  data: {
+    results: Event[]
+    offset: string
+    total: string
+  }
+  attributionText: string
+}
+
+export interface Event {
+  id: number
+  title: string
+  description: string
+  thumbnail: Thumbnail
+}
+
 interface HeroContextProps {
   onSearch(textSearch: string): void
   onPaginate(page: number): void
   getDetails(characterId: number): void
   attributionText: string
   characters: Character[]
-  characterDetails: any
+  characterDetails: Event[]
   pageInfo: { page: string; total: string }
   loading: boolean
 }
@@ -63,8 +79,10 @@ const HeroContext = createContext<HeroContextProps>({} as HeroContextProps)
 export const HeroProvider: React.FC<Props> = ({ children }) => {
   const textSearch = React.useRef<string>('')
   const [loading, setLoading] = React.useState(false)
-  const [values, setValues] = React.useState<ServicePayload>({} as ServicePayload)
-  const [details, setDetails] = React.useState<ServicePayload>({} as ServicePayload)
+  const [values, setValues] = React.useState<CharacterServicePayload>({} as CharacterServicePayload)
+  const [details, setDetails] = React.useState<CharacterEventServicePayload>(
+    {} as CharacterEventServicePayload,
+  )
 
   const characters = React.useMemo(() => {
     if (!values.data) return []
@@ -73,7 +91,7 @@ export const HeroProvider: React.FC<Props> = ({ children }) => {
   }, [values])
 
   const characterDetails = React.useMemo(() => {
-    if (!details.data) return undefined
+    if (!details.data) return []
     const { data } = details
     return data.results
   }, [details])
@@ -86,7 +104,7 @@ export const HeroProvider: React.FC<Props> = ({ children }) => {
       const ts = new Date().getTime()
       const hash = MD5(ts + PRIVATE_KEY + PUBLIC_KEY).toString()
 
-      API.get<ServicePayload>('/characters', {
+      API.get<CharacterServicePayload>('/characters', {
         params: {
           nameStartsWith: searchValue,
           apikey: PUBLIC_KEY,
@@ -114,7 +132,7 @@ export const HeroProvider: React.FC<Props> = ({ children }) => {
       const ts = new Date().getTime()
       const hash = MD5(ts + PRIVATE_KEY + PUBLIC_KEY).toString()
 
-      API.get<ServicePayload>(`/characters/${characterId}/events`, {
+      API.get<CharacterEventServicePayload>(`/characters/${characterId}/events`, {
         params: {
           apikey: PUBLIC_KEY,
           ts,
